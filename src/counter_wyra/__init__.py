@@ -1,9 +1,11 @@
+"""A random Counter thing I made for no reason at all"""
 # Copyright (C) Arnay Kumar
-# This project is under 
-from typing import Any
+# This project is under the WTFPL License.
+from typing import Any, Union
 
 
-class Counter(object):
+class Counter:
+    """A class that implements a counter with various arithmetic operations."""
     def __init__(self, count: int = None) -> None:
         if count:
             self.count = count
@@ -22,8 +24,8 @@ class Counter(object):
                 self.count += count
             else:
                 self.count += 1
-        except TypeError:
-            raise TypeError("Incorrect type")
+        except TypeError as exc:
+            raise TypeError("Incorrect type") from exc
 
     def decrement(self, count: int = None) -> None:
         """
@@ -43,18 +45,18 @@ class Counter(object):
     def __int__(self) -> int:
         return int(self.count)
 
-    def __sub__(self, other) -> float | Any:
-        if type(other) is int:
+    def __sub__(self, other) -> Union[float, Any]:
+        if isinstance(other, int):
             return self.count - other
-        elif isinstance(other, Counter):
+        if isinstance(other, Counter):
             return self.count - other.count
         else:
             raise TypeError('Can only add integers or Counter objects')
 
-    def __add__(self, other) -> float | Any:
-        if type(other) is int:
+    def __add__(self, other) -> Union[float, Any]:
+        if isinstance(other, int):
             return self.count + other
-        elif isinstance(other, Counter):
+        if isinstance(other, Counter):
             return self.count + other.count
         else:
             raise TypeError('Can only add integers or Counter objects')
@@ -62,33 +64,33 @@ class Counter(object):
     def __repr__(self) -> str:
         return str(f"Counter({self.count})")
 
-    def __truediv__(self, other) -> float | Any:
+    def __truediv__(self, other) -> Union[float, Any]:
         try:
-            if type(other) is int:
+            if isinstance(other, int):
                 return self.count / other
-            elif isinstance(other, Counter):
+            if isinstance(other, Counter):
                 return self.count / other.count
             else:
                 raise TypeError('Can only divide integers or Counter objects')
         except ZeroDivisionError:
             return "It is not possible to divide by zero"
 
-    def __floordiv__(self, other) -> float | Any:
+    def __floordiv__(self, other) -> Union[float, Any]:
         try:
-            if type(other) is int:
+            if isinstance(other, int):
                 return self.count // other
-            elif isinstance(other, Counter):
+            if isinstance(other, Counter):
                 return self.count // other.count
             else:
                 raise TypeError('Can only floor divide integers or Counter objects')
         except ZeroDivisionError:
             return "It is not possible to floor divide by zero"
 
-    def __mod__(self, other) -> float | Any:
+    def __mod__(self, other) -> Union[float, Any]:
         try:
-            if type(other) is int:
+            if isinstance(other, int):
                 return self.count % other
-            elif isinstance(other, Counter):
+            if isinstance(other, Counter):
                 return self.count % other.count
             else:
                 raise TypeError('Can only Divide integers or Counter objects')
