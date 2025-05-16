@@ -50,16 +50,14 @@ class Counter:
             return self.count - other
         if isinstance(other, Counter):
             return self.count - other.count
-        else:
-            raise TypeError('Can only add integers or Counter objects')
+        raise TypeError('Can only add integers or Counter objects')
 
     def __add__(self, other) -> Union[float, Any]:
         if isinstance(other, int):
             return self.count + other
         if isinstance(other, Counter):
             return self.count + other.count
-        else:
-            raise TypeError('Can only add integers or Counter objects')
+        raise TypeError('Can only add integers or Counter objects')
 
     def __repr__(self) -> str:
         return str(f"Counter({self.count})")
@@ -70,8 +68,7 @@ class Counter:
                 return self.count / other
             if isinstance(other, Counter):
                 return self.count / other.count
-            else:
-                raise TypeError('Can only divide integers or Counter objects')
+            raise TypeError('Can only divide integers or Counter objects')
         except ZeroDivisionError:
             return "It is not possible to divide by zero"
 
@@ -81,8 +78,7 @@ class Counter:
                 return self.count // other
             if isinstance(other, Counter):
                 return self.count // other.count
-            else:
-                raise TypeError('Can only floor divide integers or Counter objects')
+            raise TypeError('Can only floor divide integers or Counter objects')
         except ZeroDivisionError:
             return "It is not possible to floor divide by zero"
 
@@ -92,7 +88,6 @@ class Counter:
                 return self.count % other
             if isinstance(other, Counter):
                 return self.count % other.count
-            else:
-                raise TypeError('Can only Divide integers or Counter objects')
+            raise TypeError('Can only Divide integers or Counter objects')
         except ZeroDivisionError:
             return "It is not possible to divide by zero"
